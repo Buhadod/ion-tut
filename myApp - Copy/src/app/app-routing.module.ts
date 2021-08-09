@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'items',
+    redirectTo: 'login',
     pathMatch: 'full' 
   },
   {
@@ -19,23 +19,6 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
-  {
-    path: 'items',
-    loadChildren: () => import('./items/items.module').then( m => m.ItemsPageModule),
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'item/:id',
-    loadChildren: () => import('./item/item.module').then( m => m.ItemPageModule)
-  },
-  {
-    path: 'edit-item/:id',
-    loadChildren: () => import('./edit-item/edit-item.module').then( m => m.EditItemPageModule)
-  },
-  {
-    path: 'create-item',
-    loadChildren: () => import('./create-item/create-item.module').then( m => m.CreateItemPageModule)
-  }
 ];
 
 @NgModule({

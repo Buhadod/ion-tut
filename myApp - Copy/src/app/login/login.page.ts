@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
           var user = JSON.parse(localStorage.getItem('user'));
 
           console.log(token,user);
-          this.router.navigate(['/items'])
+          //this.router.navigate(['/items'])
       }, error => {
         console.log(error);
       });
