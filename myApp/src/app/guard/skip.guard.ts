@@ -6,23 +6,23 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class SkipGuard implements CanActivate {
   constructor(private router: Router) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-    let isExpired = this.checkToken();
+      let isExpired = this.checkToken();
     
-    if(isExpired){
-      this.router.navigate(['/login']);
-    }
-    
-    console.log(isExpired);
-    
-    return true;
+      if(!isExpired){
+        this.router.navigate(['/items']);
+      }
+      
 
+      return true;
+      
   }
+  
 
   checkToken(){
 
@@ -38,5 +38,4 @@ export class AuthGuard implements CanActivate {
     return !isExpired;
 
   }
-  
 }
